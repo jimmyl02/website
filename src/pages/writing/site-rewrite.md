@@ -78,6 +78,15 @@ It turns out, this is a very common use case for jekyll and a really nice plugin
 
 With one quick Claude command "based on the new files you've created, add the redirect_to directive to all the previous blogs using the base domain https://jimmyli.us/writing" I waited a minute or two and Claude finished. That saved me probably 10 minutes of time manually translating links and just made approaching this otherwise laborious work more doable.
 
+A full sample of a previous blog post is [here](https://github.com/jimmyl02/blog/blob/master/_posts/2022-2-21-DiceCTF22-In-Review.md?plain=1) and the only change I needed to make was adding the following:
+
+```yaml
+---
+...
+redirect_to: https://jimmyli.us/writing/dicectf-2022-in-review
+---
+```
+
 ## Takeaways
 
 I'm honestly surprised by how much I was able to do in just a few hours. Without AI assistance, this project would've taken me at least a few days despite having familiarity with the frameworks involved. The most important part is that AI was able to do a lot of the tedious work (initial styling, blog post transferring). This drastically increased my motivation to finally do this rewrite as doing the tedious work is never fun. What is fun is writing blog posts like this and tweaking the styling to my liking!
