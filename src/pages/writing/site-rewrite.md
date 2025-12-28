@@ -12,7 +12,7 @@ Since 2019, I have been using a [jekyll site](https://github.com/jimmyl02/blog/)
 
 With a bit more time on my hands, I decided to bite the bullet and do a full rewrite + slight design upgrade using [Astro](https://astro.build/). I had previously used Astro to maintain a simple website blog. For this specific use case, there really is no better framework. I also (maybe over-ambitiously) expect myself to want to use full React components in interactive blog posts which adds more reason to invest in setting up Astro.
 
-![Personal Site](./images/personal-site.png)
+![Personal Site](./images/_personal-site.png)
 
 ## Setting up the new site
 

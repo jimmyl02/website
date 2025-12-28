@@ -36,7 +36,21 @@ const { pageTitle = "Jimmy Li" } = Astro.props;
       content="Hey, I'm Jimmy! Welcome to my personal website where I share my thoughts on engineering, systems, and security."
     />
     <title>{pageTitle}</title>
-  </head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9M5CQV9THX"
+    ></script></head
+  >
+
+  <!-- Google tag (gtag.js) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+
+    gtag("config", "G-9M5CQV9THX");
+  </script>
+
   <body class="flex min-h-screen flex-col">
     <main class="grow">
       <div class="container mx-auto max-w-[760px] px-6 py-12">
