@@ -1,0 +1,49 @@
+---
+import Header from "../../components/Header.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+interface Frontmatter {
+  title: string;
+  date: string;
+  description: string;
+}
+
+interface Post {
+  url: string;
+  frontmatter: Frontmatter;
+}
+
+const posts = Object.values(import.meta.glob<Post>("./*.md", { eager: true }));
+const sortedPosts = posts.sort(
+  (a, b) =>
+    new Date(b.frontmatter.date).valueOf() -
+    new Date(a.frontmatter.date).valueOf(),
+);
+---
+
+<BaseLayout pageTitle="Writing">
+  <Header />
+
+  <main class="mt-10">
+    <div class="space-y-12">
+      {
+        sortedPosts.map((post) => (
+          <article class="mb-4">
+            <div class="mb-1 text-sm text-gray-400">
+              {post.frontmatter.date}
+            </div>
+            <h3 class="text-lg leading-normal">
+              <a href={post.url} class="font-normal underline">
+                {post.frontmatter.title}
+              </a>
+              <span class="text-gray-700">
+                {" "}
+                — {post.frontmatter.description}
+              </span>
+            </h3>
+          </article>
+        ))
+      }
+    </div>
+  </main>
+</BaseLayout>

@@ -1,0 +1,71 @@
+---
+import Header from "../components/Header.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const projects = [
+  {
+    title: "rVPN",
+    description:
+      "rVPN is an identity based Wireguard VPN control and data plane. The goal is to greatly simplify making any server a VPN entry point as well as clients connecting to the VPN through native clients.",
+    links: [{ label: "Github", url: "https://github.com/redpwn/rvpn" }],
+  },
+  {
+    title: "eye-break",
+    description:
+      "eye-break is a Firefox extension to remind you to give your eyes a break. There is a simple reminder on a configurable interval and is built with React, Tailwind, and shadcn.",
+    links: [
+      { label: "Github", url: "https://github.com/jimmyl02/eye-break" },
+      {
+        label: "Addon Store",
+        url: "https://addons.mozilla.org/en-US/firefox/addon/eye-break/",
+      },
+      {
+        label: "Blog Post",
+        url: "https://blog.jimmyli.us/articles/2024-02/Firefox-Extension",
+      },
+    ],
+  },
+  {
+    title: "guessr.app",
+    description:
+      "Guessr is a multiplayer real-time song guessing game with a horizontally scalable architecture built on Redis and WebSockets.",
+    links: [
+      { label: "Website", url: "https://guessr.app" },
+      { label: "Github", url: "https://github.com/jimmyl02/guessrapp" },
+    ],
+  },
+];
+---
+
+<BaseLayout pageTitle="Projects">
+  <Header />
+
+  <main class="mt-12 space-y-16">
+    <section>
+      <div class="space-y-8">
+        {
+          projects.map((project) => (
+            <article>
+              <h3 class="mb-3 text-lg font-normal text-gray-900">
+                {project.title}
+              </h3>
+              <p class="mb-4 leading-relaxed text-gray-700">
+                {project.description}
+              </p>
+              <nav class="flex flex-wrap gap-x-4 gap-y-2">
+                {project.links.map((link) => (
+                  <a
+                    href={link.url}
+                    class="text-brand-red hover:decoration-brand-red underline decoration-gray-300 underline-offset-4 transition-colors"
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </nav>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+  </main>
+</BaseLayout>

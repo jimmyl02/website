@@ -1,0 +1,79 @@
+---
+import Header from "../components/Header.astro";
+import BaseLayout from "./BaseLayout.astro";
+
+const { frontmatter } = Astro.props;
+---
+
+<BaseLayout pageTitle={frontmatter.title}>
+  <Header />
+  <article class="post-content text-lg leading-relaxed">
+    <header class="mb-6">
+      <h1 class="mb-2 text-3xl font-normal">{frontmatter.title}</h1>
+      {
+        frontmatter.date && (
+          <div class="text-sm text-gray-400">{frontmatter.date}</div>
+        )
+      }
+    </header>
+    <div class="markdown-body">
+      <slot />
+    </div>
+  </article>
+</BaseLayout>
+
+<style is:global>
+  @reference "../styles/global.css";
+
+  /* Markdown Content Styling */
+  .markdown-body {
+    @apply leading-relaxed text-gray-800;
+  }
+
+  .markdown-body h2 {
+    @apply mt-8 mb-4 text-2xl font-normal text-gray-900;
+  }
+
+  .markdown-body h3 {
+    @apply mt-6 mb-3 text-xl font-normal text-gray-900;
+  }
+
+  .markdown-body h4 {
+    @apply mt-4 mb-2 text-lg font-medium text-gray-900;
+  }
+
+  /* Reduced space between paragraphs */
+  .markdown-body p {
+    @apply mb-4;
+  }
+
+  .markdown-body ul,
+  .markdown-body ol {
+    @apply mb-4 ml-6 list-disc;
+  }
+
+  .markdown-body li {
+    @apply mb-1;
+  }
+
+  .markdown-body pre {
+    @apply my-6 overflow-x-auto rounded-lg border border-gray-100 bg-gray-50 p-4 text-sm;
+  }
+
+  .markdown-body code:not(pre code) {
+    @apply rounded border border-gray-100 bg-gray-50 px-1.5 py-0.5 text-[0.9em] text-gray-800;
+  }
+
+  .markdown-body blockquote {
+    @apply my-6 border-l-4 border-gray-200 pl-4 text-gray-600 italic;
+  }
+
+  .markdown-body img {
+    @apply my-6 rounded-lg;
+  }
+
+  /* Ensuring links in markdown follow the site style */
+  .markdown-body a {
+    @apply hover:decoration-brand-red underline decoration-gray-300 underline-offset-4 transition-colors;
+  }
+</style>

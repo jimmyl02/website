@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Source Serif 4 Variable", "serif";
+  --color-brand-red: #c53030;
+}
+
+@layer base {
+  html {
+    @apply font-serif;
+  }
+  a {
+    @apply text-brand-red decoration-1 underline-offset-4;
+  }
+}

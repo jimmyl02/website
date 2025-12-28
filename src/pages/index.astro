@@ -1,0 +1,132 @@
+---
+import Header from "../components/Header.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+interface Frontmatter {
+  title: string;
+  date: string;
+  description: string;
+  featured?: boolean;
+}
+
+interface Post {
+  url: string;
+  frontmatter: Frontmatter;
+}
+
+const posts = Object.values(
+  import.meta.glob<Post>("./writing/*.md", { eager: true }),
+);
+
+const sortedPosts = posts.sort(
+  (a, b) =>
+    new Date(b.frontmatter.date).valueOf() -
+    new Date(a.frontmatter.date).valueOf(),
+);
+
+const featuredPosts = sortedPosts.filter((post) => post.frontmatter.featured);
+const recentPosts = sortedPosts.slice(0, 2);
+---
+
+<BaseLayout>
+  <Header />
+
+  <main class="space-y-4 text-lg leading-relaxed">
+    <p>Hey, I'm Jimmy!</p>
+
+    <p>
+      I'm a software engineer with a passion for distributed systems, security,
+      and machine learning. I currently work on building and scaling the core
+      product, platform + infrastructure, and engineering team at <a
+        href="https://conversion.ai">Conversion</a
+      >.
+    </p>
+
+    <p>
+      Previously, I was a part of the infrastructure security team at <a
+        href="https://www.pinterest.com">Pinterest</a
+      > where I built large scale systems to securely distribute <a
+        href="https://en.wikipedia.org/wiki/Public_key_infrastructure"
+        >identity</a
+      > and <a href="https://github.com/pinterest/knox">secrets</a> across the company.
+      I had the privilege to work on multiple tier 1 services critical to the company's
+      success with many talented engineers and teammates.
+    </p>
+
+    <p>
+      I'm also fortunate to have had an early interest in security with a focus
+      on web application security. I competed with <a href="https://redpwn.net"
+        >redpwn</a
+      > and <a href="https://dicega.ng">dicegang</a> in many CTFs and met many great
+      friends and mentors along the way.
+    </p>
+
+    <p>
+      I'm based in San Francisco and in my free time I like to share my musings
+      on all things <a href="/writing">engineering</a>. Please reach out if
+      you'd like to chat! You can find me on <a
+        href="https://www.linkedin.com/in/jimmy-li1/">linkedin</a
+      >, <a href="https://twitter.com/jimfutsu">twitter</a>, <a
+        href="https://github.com/jimmyl02">github</a
+      >, or <a href="mailto:me@jimmyli.us">email</a>.
+    </p>
+
+    <section class="mt-8">
+      <h2
+        class="mb-8 text-sm font-medium tracking-wider text-gray-400 uppercase"
+      >
+        Featured Posts
+      </h2>
+
+      <div class="space-y-12">
+        {
+          featuredPosts.map((post) => (
+            <article class="mb-4">
+              <div class="mb-1 text-sm text-gray-400">
+                {post.frontmatter.date}
+              </div>
+              <h3 class="text-lg leading-normal">
+                <a href={post.url} class="font-normal underline">
+                  {post.frontmatter.title}
+                </a>
+                <span class="text-gray-700">
+                  {" "}
+                  — {post.frontmatter.description}
+                </span>
+              </h3>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="mt-12">
+      <h2
+        class="mb-8 text-sm font-medium tracking-wider text-gray-400 uppercase"
+      >
+        Recent Posts
+      </h2>
+
+      <div class="space-y-12">
+        {
+          recentPosts.map((post) => (
+            <article class="mb-4">
+              <div class="mb-1 text-sm text-gray-400">
+                {post.frontmatter.date}
+              </div>
+              <h3 class="text-lg leading-normal">
+                <a href={post.url} class="font-normal underline">
+                  {post.frontmatter.title}
+                </a>
+                <span class="text-gray-700">
+                  {" "}
+                  — {post.frontmatter.description}
+                </span>
+              </h3>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+  </main>
+</BaseLayout>
