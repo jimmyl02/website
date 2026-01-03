@@ -2,7 +2,7 @@
 layout: ../../layouts/PostLayout.astro
 title: Rewriting My Personal Website with Astro
 date: Dec 28, 2025
-description: "I recently rewrote my website in Astro (using AI) to and this covers what the experience looked like."
+description: "I recently rewrote my website in Astro (using AI) and this documents what the experience looked like."
 tags: [website]
 ---
 
