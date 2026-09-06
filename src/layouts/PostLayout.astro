@@ -72,6 +72,66 @@ const { frontmatter } = Astro.props;
     @apply my-6 rounded-lg;
   }
 
+  .markdown-body .table-scroll {
+    @apply my-8 overflow-x-auto;
+  }
+
+  .markdown-body .table-scroll:focus-visible {
+    @apply outline-2 outline-offset-4 outline-gray-400;
+  }
+
+  .markdown-body table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow-wrap: normal;
+  }
+
+  .markdown-body th,
+  .markdown-body td {
+    padding: 0.5rem 1rem;
+    vertical-align: top;
+  }
+
+  .markdown-body th {
+    @apply font-sans text-base font-semibold text-gray-900;
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  .markdown-body thead {
+    border-bottom: 1px solid #d6d3d1;
+  }
+
+  .markdown-body tbody tr + tr {
+    border-top: 1px solid #e7e5e4;
+  }
+
+  .markdown-body tr > :first-child {
+    padding-left: 0;
+  }
+
+  .markdown-body tr > :last-child {
+    padding-right: 0;
+  }
+
+  .markdown-body [align="center"] {
+    text-align: center;
+  }
+
+  .markdown-body [align="right"] {
+    text-align: right;
+  }
+
+  .markdown-body table code:not(pre code) {
+    padding: 0;
+    border: 0;
+    background: transparent;
+  }
+
+  .markdown-body caption {
+    @apply mb-3 text-left text-sm text-gray-600;
+  }
+
   /* Ensuring links in markdown follow the site style */
   .markdown-body a {
     @apply hover:decoration-brand-red underline decoration-gray-300 underline-offset-4 transition-colors;
